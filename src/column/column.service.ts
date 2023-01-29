@@ -52,8 +52,8 @@ export class ColumnService {
   ) {
     const column = await this.getUserColumn(userId, columnId);
     return await this.columnRepository.save({
-      id: column.id,
       ...newProperties,
+      id: column.id,
     });
   }
 

@@ -36,13 +36,13 @@ export class BoardController {
   })
   @Post('/create')
   async createBoard(@User() user: UserType, @Body() payload: CreateBoardDto) {
-    return await this.boardService.create(user.id, payload);
+    return await this.boardService.createBoard(user.id, payload);
   }
 
   @ApiOkResponse({ description: 'The record has been successfully fetched.' })
   @Get('/:id')
   async getBoard(@User() user: UserType, @Param('id') boardId: number) {
-    return this.boardService.get(user.id, boardId);
+    return this.boardService.getBoard(user.id, boardId);
   }
 
   @ApiOkResponse({ description: 'The record has been successfully updated.' })
@@ -52,7 +52,7 @@ export class BoardController {
     @Param('id') boardId: number,
     @Body() payload: UpdateBoardDto,
   ) {
-    return this.boardService.update(user.id, boardId, payload);
+    return this.boardService.updateBoard(user.id, boardId, payload);
   }
 
   @ApiNoContentResponse({
@@ -61,6 +61,6 @@ export class BoardController {
   @HttpCode(204)
   @Delete('/:id')
   async deleteBoard(@User() user: UserType, @Param('id') boardId: number) {
-    return await this.boardService.delete(user.id, boardId);
+    return await this.boardService.deleteBoard(user.id, boardId);
   }
 }
