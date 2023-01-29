@@ -21,8 +21,10 @@ import {
   ApiForbiddenResponse,
   ApiNoContentResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 
+@ApiTags('Column')
 @ApiBearerAuth()
 @ApiForbiddenResponse({ description: 'Forbidden.' })
 @UseGuards(JwtAuthGuard)

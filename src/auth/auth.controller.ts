@@ -7,13 +7,14 @@ import { SignUpDto } from 'src/auth/dto/sign-up.dto';
 import {
   ApiBody,
   ApiConflictResponse,
-  ApiExtraModels,
   ApiNoContentResponse,
   ApiOkResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { LoginResponseDto } from 'src/auth/dto/login-response.dto';
 import { LoginDto } from 'src/auth/dto/login.dto';
 
+@ApiTags('Auth')
 @Controller('/api/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
