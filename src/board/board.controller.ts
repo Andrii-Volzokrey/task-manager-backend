@@ -14,24 +14,36 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { User } from 'src/auth/request-user.decorator';
 import UserType from 'src/auth/types/user.type';
 import { UpdateBoardDto } from 'src/board/dto/update-board.dto';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiForbiddenResponse({ description: 'Forbidden.' })
+@UseGuards(JwtAuthGuard)
 @Controller('/api/board')
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+  })
   @Post('/create')
   async createBoard(@User() user: UserType, @Body() payload: CreateBoardDto) {
     return await this.boardService.create(user.id, payload);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @ApiOkResponse({ description: 'The record has been successfully fetched.' })
   @Get('/get/:id')
   async getBoard(@User() user: UserType, @Param('id') boardId: number) {
     return this.boardService.get(user.id, boardId);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @ApiOkResponse({ description: 'The record has been successfully updated.' })
   @Post('/update/:id')
   async updateBoard(
     @User() user: UserType,
@@ -41,7 +53,9 @@ export class BoardController {
     return this.boardService.update(user.id, boardId, payload);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @ApiNoContentResponse({
+    description: 'The record has been successfully deleted.',
+  })
   @HttpCode(204)
   @Delete('/delete/:id')
   async deleteBoard(@User() user: UserType, @Param('id') boardId: number) {
