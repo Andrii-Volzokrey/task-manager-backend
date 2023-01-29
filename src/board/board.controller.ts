@@ -38,13 +38,13 @@ export class BoardController {
   }
 
   @ApiOkResponse({ description: 'The record has been successfully fetched.' })
-  @Get('/get/:id')
+  @Get('/:id')
   async getBoard(@User() user: UserType, @Param('id') boardId: number) {
     return this.boardService.get(user.id, boardId);
   }
 
   @ApiOkResponse({ description: 'The record has been successfully updated.' })
-  @Post('/update/:id')
+  @Post('/:id')
   async updateBoard(
     @User() user: UserType,
     @Param('id') boardId: number,
@@ -57,8 +57,8 @@ export class BoardController {
     description: 'The record has been successfully deleted.',
   })
   @HttpCode(204)
-  @Delete('/delete/:id')
+  @Delete('/:id')
   async deleteBoard(@User() user: UserType, @Param('id') boardId: number) {
-    return this.boardService.delete(user.id, boardId);
+    return await this.boardService.delete(user.id, boardId);
   }
 }

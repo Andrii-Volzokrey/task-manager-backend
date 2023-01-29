@@ -24,8 +24,4 @@ export class UserService {
   async findOne(where: FindOptionsWhere<UserEntity>) {
     return this.userRepository.findOne({ where });
   }
-
-  async find(where: FindOptionsWhere<UserEntity>) {
-    return this.userRepository.find({ where });
-  }
 }

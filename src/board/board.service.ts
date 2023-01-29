@@ -40,6 +40,6 @@ export class BoardService {
 
   async delete(userId: number, boardId: number) {
     const board = await this.getUserBoard(userId, boardId);
-    await this.boardRepository.delete({ id: board.id });
+    return await this.boardRepository.delete({ id: board.id });
   }
 }

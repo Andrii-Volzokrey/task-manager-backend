@@ -1,3 +1,7 @@
-import { UserEntity } from 'src/user/user.entity';
-type UserType = Omit<UserEntity, 'password' | 'boards'>;
+type UserType = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
 export default UserType;
