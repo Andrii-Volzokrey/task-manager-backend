@@ -35,7 +35,7 @@ import configuration from 'src/config/configuration';
         port: configService.get('database.port'),
         username: configService.get('database.username'),
         password: configService.get('database.password'),
-        database: 'postgres',
+        database: configService.get('database.name'),
         entities: [UserEntity, BoardEntity, ColumnEntity, TaskEntity],
         synchronize: true,
       }),

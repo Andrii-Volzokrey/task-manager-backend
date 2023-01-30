@@ -1,7 +1,7 @@
 import * as process from 'process';
 
 export default () => ({
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.PORT, 10) || 8000,
   database: {
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,
