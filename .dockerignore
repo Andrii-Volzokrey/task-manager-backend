@@ -2,7 +2,7 @@ Dockerfile
 .dockerignore
 
 # dependencies
-/node_modules
+node_modules/*
 
 # production
 /dist
